@@ -4,7 +4,7 @@ const ayarlar = require('./ayarlar.json');
 const fs = require('fs');
 
 client.on("ready", async () => {
-  client.user.setPresence({ activity: { name: "Witcher ❤️ Striga" }, status: "idle" });
+  client.user.setPresence({ activity: { name: "Witcher ❤️ Pose" }, status: "idle" });
   let botVoiceChannel = client.channels.cache.get(ayarlar.botVoiceChannelID);
   if (botVoiceChannel) botVoiceChannel.join().catch(err => console.error("Bot ses kanalına bağlanamadı!"));
 });
@@ -15,7 +15,7 @@ client.on("message", async message => {
   if (message.author.id !== ayarlar.botOwner && message.author.id !== message.guild.owner.id) return;
   let args = message.content.split(' ').slice(1);
   let command = message.content.split(' ')[0].slice(ayarlar.botPrefix.length);
-  let embed = new MessageEmbed().setColor("#00ffdd").setAuthor(message.member.displayName, message.author.avatarURL({ dynamic: true, })).setFooter(`Striga Was Here ❤️`).setTimestamp();
+  let embed = new MessageEmbed().setColor("#00ffdd").setAuthor(message.member.displayName, message.author.avatarURL({ dynamic: true, })).setFooter(`Pose Was Here ❤️`).setTimestamp();
   
   // Eval
   if (command === "eval" && message.author.id === ayarlar.botOwner) {
@@ -91,7 +91,7 @@ client.on("guildMemberRemove", async member => {
   if (!entry || !entry.executor || Date.now()-entry.createdTimestamp > 5000 || guvenli(entry.executor.id) || !ayarlar.kickGuard) return;
   cezalandir(entry.executor.id, "ban");
   let logKanali = client.channels.cache.get(ayarlar.logChannelID);
-  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sağ Tık Kick Atıldı!').setDescription(`${member} **(${member.id})** üyesi, ${entry.executor} **(${entry.executor.id})** tarafından sunucudan sağ tık ile kicklendi! Kickleyen kişi jaile atıldı.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(); } else { member.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sağ Tık Kick Atıldı!').setDescription(`${member} **(${member.id})** üyesi, ${entry.executor} (${entry.executor.id}) tarafından sunucudan sağ tık ile kicklendi! Kickleyen kişi jaile atıldı.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(err => {}); };
+  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sağ Tık Kick Atıldı!').setDescription(`${member} **(${member.id})** üyesi, ${entry.executor} **(${entry.executor.id})** tarafından sunucudan sağ tık ile kicklendi! Kickleyen kişi jaile atıldı.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(); } else { member.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sağ Tık Kick Atıldı!').setDescription(`${member} **(${member.id})** üyesi, ${entry.executor} (${entry.executor.id}) tarafından sunucudan sağ tık ile kicklendi! Kickleyen kişi jaile atıldı.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(err => {}); };
 });
 // Ban koruması
 client.on("guildBanAdd", async (guild, user) => {
@@ -100,7 +100,7 @@ client.on("guildBanAdd", async (guild, user) => {
    cezalandir(entry.executor.id, "ban");
   guild.members.unban(user.id, "Sağ Tık İle Banlandığı İçin Geri Açıldı!").catch(console.error);
   let logKanali = client.channels.cache.get(ayarlar.logChannelID);
-  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sağ Tık Ban Atıldı!').setDescription(`${user} **(${user.id})** üyesi, ${entry.executor} **(${entry.executor.id})** tarafından sunucudan sağ tık ile banlandı! Banlayan kişi jaile atıldı.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(); } else { guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sağ Tık Ban Atıldı!').setDescription(`${user} **(${user.id})** üyesi, ${entry.executor} **(${entry.executor.id})** tarafından sunucudan sağ tık ile banlandı! Banlayan kişi jaile atıldı.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(err => {}); };
+  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sağ Tık Ban Atıldı!').setDescription(`${user} **(${user.id})** üyesi, ${entry.executor} **(${entry.executor.id})** tarafından sunucudan sağ tık ile banlandı! Banlayan kişi jaile atıldı.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(); } else { guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sağ Tık Ban Atıldı!').setDescription(`${user} **(${user.id})** üyesi, ${entry.executor} **(${entry.executor.id})** tarafından sunucudan sağ tık ile banlandı! Banlayan kişi jaile atıldı.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(err => {}); };
 });
 // Bot koruması
 client.on("guildMemberAdd", async member => {
@@ -109,7 +109,7 @@ client.on("guildMemberAdd", async member => {
   cezalandir(entry.executor.id, "ban");
   cezalandir(member.id, "ban");
   let logKanali = client.channels.cache.get(ayarlar.logChannelID);
-  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sunucuya Bot Eklendi!').setDescription(`${member} **(${member.id})** botu, ${entry.executor} **(${entry.executor.id})** tarafından sunucuya eklendi! Ekleyen kişi ve bot banlandı.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(); } else { member.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sunucuya Bot Eklendi!').setDescription(`${member} **(${member.id})** botu, ${entry.executor} **(${entry.executor.id})** tarafından sunucuya eklendi! Ekleyen kişi ve bot banlandı.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(err => {}); };
+  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sunucuya Bot Eklendi!').setDescription(`${member} **(${member.id})** botu, ${entry.executor} **(${entry.executor.id})** tarafından sunucuya eklendi! Ekleyen kişi ve bot banlandı.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(); } else { member.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sunucuya Bot Eklendi!').setDescription(`${member} **(${member.id})** botu, ${entry.executor} **(${entry.executor.id})** tarafından sunucuya eklendi! Ekleyen kişi ve bot banlandı.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(err => {}); };
 });
 // GuildUpdate - Sunucu ayarları koruması
 client.on("guildUpdate", async (oldGuild, newGuild) => {
@@ -119,7 +119,7 @@ client.on("guildUpdate", async (oldGuild, newGuild) => {
   if (newGuild.name !== oldGuild.name) newGuild.setName(oldGuild.name);
   if (newGuild.iconURL({dynamic: true, size: 2048}) !== oldGuild.iconURL({dynamic: true, size: 2048})) newGuild.setIcon(oldGuild.iconURL({dynamic: true, size: 2048}));
   let logKanali = client.channels.cache.get(ayarlar.logChannelID);
-  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sunucu Güncellendi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından sunucu güncellendi! Güncelleyen kişi banlandı ve sunucu eski haline getirildi.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(); } else { newGuild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sunucu Güncellendi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından sunucudan sunucu güncellendi! Güncelleyen kişi banlandı ve sunucu eski haline getirildi.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(err => {}); };
+  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sunucu Güncellendi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından sunucu güncellendi! Güncelleyen kişi banlandı ve sunucu eski haline getirildi.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(); } else { newGuild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Sunucu Güncellendi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından sunucudan sunucu güncellendi! Güncelleyen kişi banlandı ve sunucu eski haline getirildi.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(err => {}); };
 });
 // Kanal açtırmama
 client.on("channelCreate", async channel => {
@@ -128,7 +128,7 @@ client.on("channelCreate", async channel => {
   channel.delete({reason: "Yashinu Kanal Koruma"});
   cezalandir(entry.executor.id, "jail");
   let logKanali = client.channels.cache.get(ayarlar.logChannelID);
-  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Oluşturuldu!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından kanal oluşturuldu! Oluşturan kişi jaile atıldı ve kanal silindi.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(); } else { channel.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Oluşturuldu!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından kanal oluşturuldu! Oluşturan kişi jaile atıldı ve kanal silindi.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(err => {}); };
+  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Oluşturuldu!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından kanal oluşturuldu! Oluşturan kişi jaile atıldı ve kanal silindi.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(); } else { channel.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Oluşturuldu!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından kanal oluşturuldu! Oluşturan kişi jaile atıldı ve kanal silindi.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(err => {}); };
 });
 // Kanal güncelleme koruması
 client.on("channelUpdate", async (oldChannel, newChannel) => {
@@ -165,7 +165,7 @@ client.on("channelUpdate", async (oldChannel, newChannel) => {
     newChannel.createOverwrite(perm.id, thisPermOverwrites);
   });
   let logKanali = client.channels.cache.get(ayarlar.logChannelID);
-  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Güncellendi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından **${oldChannel.name}** kanalı güncellendi! Güncelleyen kişi jaile atıldı ve kanal eski haline getirildi.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(); } else { newChannel.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Güncellendi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından **${oldChannel.name}** kanalı güncellendi! Güncelleyen kişi jaile atıldı ve kanal eski haline getirildi.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(err => {}); };
+  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Güncellendi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından **${oldChannel.name}** kanalı güncellendi! Güncelleyen kişi jaile atıldı ve kanal eski haline getirildi.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(); } else { newChannel.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Güncellendi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından **${oldChannel.name}** kanalı güncellendi! Güncelleyen kişi jaile atıldı ve kanal eski haline getirildi.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(err => {}); };
 });
 // Kanal sililince geri açma
 client.on("channelDelete", async channel => {
@@ -178,7 +178,7 @@ client.on("channelDelete", async channel => {
     if (channel.type == "category") await channel.guild.channels.cache.filter(k => k.parentID == channel.id).forEach(x => x.setParent(kanal.id));
   });
   let logKanali = client.channels.cache.get(ayarlar.logChannelID);
-  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Silindi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından **${channel.name}** kanalı silindi! Silen kişi jaile atıldı ve kanal tekrar açıldı.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(); } else { channel.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Silindi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından **${channel.name}** kanalı silindi! Silen kişi jaile atıldı ve kanal tekrar açıldı.`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(err => {}); };
+  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Silindi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından **${channel.name}** kanalı silindi! Silen kişi jaile atıldı ve kanal tekrar açıldı.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(); } else { channel.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('Kanal Silindi!').setDescription(`${entry.executor} **(${entry.executor.id})** tarafından **${channel.name}** kanalı silindi! Silen kişi jaile atıldı ve kanal tekrar açıldı.`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(err => {}); };
 });
 // Yt kapat fonksiyonu
 function ytKapat(guildID) {
@@ -188,6 +188,6 @@ function ytKapat(guildID) {
     await r.setPermissions(0);
   });
   let logKanali = client.channels.cache.get(ayarlar.logChannelID);
-  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('İzinler Kapatıldı!').setDescription(`Rollerin yetkileri kapatıldı!`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(); } else { channel.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('İzinler Kapatıldı!').setDescription(`Rollerin yetkileri kapatıldı!`).setFooter(`Striga Was Here ❤️`).setTimestamp()).catch(err => {}); };
+  if (logKanali) { logKanali.send(new MessageEmbed().setColor("#00ffdd").setTitle('İzinler Kapatıldı!').setDescription(`Rollerin yetkileri kapatıldı!`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(); } else { channel.guild.owner.send(new MessageEmbed().setColor("#00ffdd").setTitle('İzinler Kapatıldı!').setDescription(`Rollerin yetkileri kapatıldı!`).setFooter(`Pose Was Here ❤️`).setTimestamp()).catch(err => {}); };
 };
 client.login(ayarlar.botToken).then(c => console.log(`${client.user.tag} olarak giriş yapıldı!`)).catch(err => console.error("Bota giriş yapılırken başarısız olundu!"));
