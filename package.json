@@ -1,15 +1,27 @@
 {
-  "name": "striga-rguard",
+  "//1": "describes your app and its dependencies",
+  "//2": "https://docs.npmjs.com/files/package.json",
+  "//3": "updating this file will download and update your packages",
+  "name": "hello-express",
   "version": "0.0.1",
-  "description": "Striga RGuard Bot",
-  "main": "striga.js",
+  "description": "Pose V12",
+  "main": "nur.js",
   "scripts": {
-    "test": "node striga.js"
+    "start": "node nur.js"
   },
-  "author": "Striga",
-  "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.3.1"
+    "discord.js": "^12.5.0"
   },
-  "keywords": []
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-express"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
 }
